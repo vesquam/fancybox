@@ -107,7 +107,14 @@
 			url: function (rez) {
 				return '//maps.google.' + rez[2] + '/?ll=' + ( rez[9] ? rez[9] + '&z=' + Math.floor(  rez[10]  ) + ( rez[12] ? rez[12].replace(/^\//, "&") : '' )  : rez[12] ) + '&output=' + ( rez[12] && rez[12].indexOf('layer=c') > 0 ? 'svembed' : 'embed' );
 			}
-		}
+		},
+		
+		/* Liferay */
+		liferay_doclib: {
+			matcher: /(.*)\/documents\/(.*)/i,
+			type: 'image',
+			url: '$1/documents/$2',
+		},
 	};
 
 	$(document).on('onInit.fb', function (e, instance) {

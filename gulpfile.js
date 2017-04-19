@@ -8,7 +8,9 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     header = require('gulp-header'),
     replace = require('gulp-replace'),
-    gutil = require('gulp-util');
+    gutil = require('gulp-util'),
+		postcss = require('gulp-postcss'),
+		prefixwrap = require('postcss-prefixwrap');
 
 var pkg = require('./package.json');
 var banner = ['// ==================================================',
@@ -55,6 +57,9 @@ gulp.task('css', function() {
             browsers: ['last 5 versions'],
             cascade: false
         }))
+				.pipe(postcss([
+						prefixwrap(".aui")
+				]))
         .pipe(concat('jquery.fancybox.css'))
         .pipe(gulp.dest('dist'))
         .pipe(rename({suffix: '.min'}))
